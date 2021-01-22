@@ -38,4 +38,4 @@
 Для отрисовки битмапов использовал готовое решение от [AlexGyver](https://github.com/AlexGyver) - [ImageProcessor](https://github.com/AlexGyver/imageProcessor) версии 1.2.
 
 ## Пикабу
-Здесь будет ссылка на пост Пикабу, когда я его опубликую.
+Ссылка на [пост](https://pikabu.ru/story/uluchshaem_matritsu_8x8_dlya_arduino_pri_pomoshchi_sdvigovyikh_registrov_7974691).
