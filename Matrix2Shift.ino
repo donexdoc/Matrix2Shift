@@ -457,7 +457,7 @@ void printAnimation(const uint8_t *animation_layers[], int frames, int animation
 }
 
 // сдвигаем столбцы и заполняем последний
-void bitmap_shift(uint8_t bitmap[8], uint8_t substitute = 0xFF)
+void bitmapShift(uint8_t bitmap[8], uint8_t substitute = 0xFF)
 {
   uint8_t *base_bitmap = bitmap;
   for (int index = 0; index < 8; index++) // проходимся по очереди по всем столбцам
@@ -474,7 +474,7 @@ void bitmap_shift(uint8_t bitmap[8], uint8_t substitute = 0xFF)
 }
 
 // функция для отображения в виде бегущей строки
-void creeping_line(const uint8_t *line[], int frames, int animation_delay = 200)
+void creepingLine(const uint8_t *line[], int frames, int animation_delay = 200)
 {
   // тут пройдемсмя подробнее
   // берем на чтение массив битмапов (массив массивов байтов) - line
@@ -507,12 +507,12 @@ void creeping_line(const uint8_t *line[], int frames, int animation_delay = 200)
 
     if (line_index == frames - 1) // отлавливаем последний отображаемый битмап
     {
-      bitmap_shift(main_bitmap_frame); // сдвигаем битмап влево, добавляя пустые столбцы (те самые 4 дополнительные столбцы)
+      bitmapShift(main_bitmap_frame); // сдвигаем битмап влево, добавляя пустые столбцы (те самые 4 дополнительные столбцы)
       printBitmap(main_bitmap_frame, animation_delay); // выводим результат наших манипуляций
     }
     else
     {
-      bitmap_shift(main_bitmap_frame, line[line_index + 1][line_shift_index]); // сдвигаем битмап влево, заполняя его данными столбцов из следующего
+      bitmapShift(main_bitmap_frame, line[line_index + 1][line_shift_index]); // сдвигаем битмап влево, заполняя его данными столбцов из следующего
       printBitmap(main_bitmap_frame, animation_delay); // выводим результат наших манипуляций
 
       if (line_shift_index < 8) // следим за тем, чтобы забираемый столбец из след. битмапа не был больше 7
@@ -542,7 +542,7 @@ void loop()
 
   // мои знания в указателях не сильны, прошу не пинать
 
-  creeping_line(pikabu_line, sizeof(pikabu_line) / 2, 100); // выводим массив битмапов в бегущей строке
+  creepingLine(pikabu_line, sizeof(pikabu_line) / 2, 100); // выводим массив битмапов в бегущей строке
   printAnimation(pikabu_line, sizeof(pikabu_line) / 2);     // теперь выведем тот же массив но с покадровой анимацией
   clr(); // гасим матрицу
 }
